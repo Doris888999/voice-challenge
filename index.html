@@ -555,6 +555,160 @@
         .tab-item.active { color: var(--primary-light); }
         .tab-item .tab-icon { font-size: 22px; }
 
+        /* ===== 排行页 ===== */
+        .rank-tab {
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .rank-tab.active {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        .rank-podium {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 20px 20px 0;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .podium-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .podium-item .podium-avatar {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+        }
+
+        .podium-item.first .podium-avatar {
+            width: 64px; height: 64px;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(253, 203, 110, 0.4);
+        }
+
+        .podium-crown { font-size: 24px; }
+        .podium-name { font-size: 12px; color: var(--text); }
+        .podium-score { font-size: 14px; font-weight: 600; color: var(--accent-light); }
+
+        .podium-block {
+            width: 70px;
+            background: var(--bg-card);
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-light);
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            border-bottom: none;
+        }
+
+        .podium-item.first .podium-block { padding: 20px 0; }
+        .podium-item.second .podium-block { padding: 14px 0; }
+        .podium-item.third .podium-block { padding: 10px 0; }
+
+        /* ===== 我的页 ===== */
+        .profile-header {
+            text-align: center;
+            padding: 50px 20px 24px;
+            background: radial-gradient(ellipse at top, #2D1B69 0%, transparent 70%);
+        }
+
+        .profile-avatar-big {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 36px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .profile-username { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+        .profile-level { font-size: 13px; color: var(--accent-light); }
+
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            padding: 20px;
+            margin: 0 20px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 24px; font-weight: 700; color: var(--primary-light); }
+        .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+        .achievement-list {
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .achievement-item {
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            display: flex; align-items: center; gap: 6px;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .achievement-item.unlocked {
+            background: rgba(108, 92, 231, 0.1);
+            color: var(--primary-light);
+        }
+
+        .achievement-item.locked {
+            background: rgba(255,255,255,0.03);
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        .achievement-icon { font-size: 16px; }
+
+        .history-list { padding: 0 20px; }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .history-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: var(--bg-card);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+
+        .history-info { flex: 1; }
+        .history-name { font-size: 14px; }
+        .history-time { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+        .history-score { font-size: 16px; font-weight: 600; color: var(--accent-light); }
+
         /* ===== 排行榜 ===== */
         .rank-list {
             padding: 0 20px;
@@ -713,9 +867,186 @@
     </div>
 
     <div class="tab-bar">
-        <div class="tab-item active"><span class="tab-icon">🏠</span>首页</div>
-        <div class="tab-item"><span class="tab-icon">🏆</span>排行</div>
-        <div class="tab-item"><span class="tab-icon">👤</span>我的</div>
+        <div class="tab-item active" onclick="switchTab('home')"><span class="tab-icon">🏠</span>首页</div>
+        <div class="tab-item" onclick="switchTab('rank')"><span class="tab-icon">🏆</span>排行</div>
+        <div class="tab-item" onclick="switchTab('profile')"><span class="tab-icon">👤</span>我的</div>
+    </div>
+</div>
+
+<!-- ===== 排行页 ===== -->
+<div class="page rank-page" id="page-rank">
+    <div style="padding: 50px 20px 20px;">
+        <h2 style="font-size: 22px; margin-bottom: 4px;">🏆 配音排行榜</h2>
+        <p style="font-size: 13px; color: var(--text-muted);">本周热门挑战排名</p>
+    </div>
+
+    <div style="display: flex; gap: 8px; padding: 0 20px; margin-bottom: 20px;">
+        <button class="rank-tab active" onclick="switchRankTab(this)">总榜</button>
+        <button class="rank-tab" onclick="switchRankTab(this)">电影</button>
+        <button class="rank-tab" onclick="switchRankTab(this)">动漫</button>
+        <button class="rank-tab" onclick="switchRankTab(this)">情感</button>
+    </div>
+
+    <div class="rank-podium">
+        <div class="podium-item second">
+            <div class="podium-avatar">🎤</div>
+            <div class="podium-name">配音达人Amy</div>
+            <div class="podium-score">93分</div>
+            <div class="podium-block">2</div>
+        </div>
+        <div class="podium-item first">
+            <div class="podium-crown">👑</div>
+            <div class="podium-avatar">😎</div>
+            <div class="podium-name">声控小王子</div>
+            <div class="podium-score">96分</div>
+            <div class="podium-block">1</div>
+        </div>
+        <div class="podium-item third">
+            <div class="podium-avatar">🌟</div>
+            <div class="podium-name">低音炮选手</div>
+            <div class="podium-score">89分</div>
+            <div class="podium-block">3</div>
+        </div>
+    </div>
+
+    <div class="rank-list" style="padding: 0 20px;">
+        <div class="rank-item">
+            <div class="rank-num">4</div>
+            <div class="rank-avatar" style="background: linear-gradient(135deg, #00b894, #00cec9);">🎧</div>
+            <div class="rank-info">
+                <div class="rank-name">声优见习生</div>
+                <div class="rank-desc">经典电影台词 · 87分</div>
+            </div>
+            <div class="rank-score">87分</div>
+        </div>
+        <div class="rank-item">
+            <div class="rank-num">5</div>
+            <div class="rank-avatar" style="background: linear-gradient(135deg, #fd79a8, #e17055);">🎵</div>
+            <div class="rank-info">
+                <div class="rank-name">甜嗓小姐姐</div>
+                <div class="rank-desc">动漫名场面 · 85分</div>
+            </div>
+            <div class="rank-score">85分</div>
+        </div>
+        <div class="rank-item">
+            <div class="rank-num">6</div>
+            <div class="rank-avatar" style="background: linear-gradient(135deg, #fdcb6e, #e17055);">🔥</div>
+            <div class="rank-info">
+                <div class="rank-name">播音腔大佬</div>
+                <div class="rank-desc">新闻播报 · 83分</div>
+            </div>
+            <div class="rank-score">83分</div>
+        </div>
+        <div class="rank-item">
+            <div class="rank-num">7</div>
+            <div class="rank-avatar" style="background: linear-gradient(135deg, #a29bfe, #6c5ce7);">✨</div>
+            <div class="rank-info">
+                <div class="rank-name">情感朗读者</div>
+                <div class="rank-desc">情感独白 · 81分</div>
+            </div>
+            <div class="rank-score">81分</div>
+        </div>
+        <div class="rank-item">
+            <div class="rank-num">8</div>
+            <div class="rank-avatar" style="background: linear-gradient(135deg, #55a3e7, #6c5ce7);">🎬</div>
+            <div class="rank-info">
+                <div class="rank-name">配音小白</div>
+                <div class="rank-desc">动漫名场面 · 78分</div>
+            </div>
+            <div class="rank-score">78分</div>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 12px;">
+        — 每周一 0:00 重置排行 —
+    </div>
+
+    <div class="tab-bar">
+        <div class="tab-item" onclick="switchTab('home')"><span class="tab-icon">🏠</span>首页</div>
+        <div class="tab-item active" onclick="switchTab('rank')"><span class="tab-icon">🏆</span>排行</div>
+        <div class="tab-item" onclick="switchTab('profile')"><span class="tab-icon">👤</span>我的</div>
+    </div>
+</div>
+
+<!-- ===== 我的页 ===== -->
+<div class="page profile-page" id="page-profile">
+    <div class="profile-header">
+        <div class="profile-avatar-big">🎙️</div>
+        <div class="profile-username">配音爱好者</div>
+        <div class="profile-level">Lv.3 声音达人</div>
+    </div>
+
+    <div class="profile-stats">
+        <div class="stat-item">
+            <div class="stat-value">7</div>
+            <div class="stat-label">完成挑战</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">87</div>
+            <div class="stat-label">最高分</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">3</div>
+            <div class="stat-label">超越好友</div>
+        </div>
+    </div>
+
+    <div class="section-title" style="padding-top: 10px;">🎯 我的成就</div>
+    <div class="achievement-list">
+        <div class="achievement-item unlocked">
+            <span class="achievement-icon">🌟</span>
+            <span>初次开嗓</span>
+        </div>
+        <div class="achievement-item unlocked">
+            <span class="achievement-icon">🔥</span>
+            <span>连续挑战3天</span>
+        </div>
+        <div class="achievement-item unlocked">
+            <span class="achievement-icon">⚔️</span>
+            <span>PK胜利5次</span>
+        </div>
+        <div class="achievement-item locked">
+            <span class="achievement-icon">👑</span>
+            <span>登顶排行榜</span>
+        </div>
+        <div class="achievement-item locked">
+            <span class="achievement-icon">🎭</span>
+            <span>全主题通关</span>
+        </div>
+    </div>
+
+    <div class="section-title">📝 挑战记录</div>
+    <div class="history-list">
+        <div class="history-item">
+            <div class="history-icon">🎬</div>
+            <div class="history-info">
+                <div class="history-name">经典电影台词</div>
+                <div class="history-time">今天 14:32</div>
+            </div>
+            <div class="history-score">87分</div>
+        </div>
+        <div class="history-item">
+            <div class="history-icon">🎌</div>
+            <div class="history-info">
+                <div class="history-name">动漫名场面</div>
+                <div class="history-time">昨天 20:15</div>
+            </div>
+            <div class="history-score">82分</div>
+        </div>
+        <div class="history-item">
+            <div class="history-icon">🎭</div>
+            <div class="history-info">
+                <div class="history-name">情感独白</div>
+                <div class="history-time">2天前</div>
+            </div>
+            <div class="history-score">79分</div>
+        </div>
+    </div>
+
+    <div class="tab-bar">
+        <div class="tab-item" onclick="switchTab('home')"><span class="tab-icon">🏠</span>首页</div>
+        <div class="tab-item" onclick="switchTab('rank')"><span class="tab-icon">🏆</span>排行</div>
+        <div class="tab-item active" onclick="switchTab('profile')"><span class="tab-icon">👤</span>我的</div>
     </div>
 </div>
 
@@ -999,6 +1330,22 @@
     function shareToFriend() {
         closeShare();
         alert('已复制挑战链接！\n发送给好友，看谁配得更好 🔥');
+    }
+
+    function switchTab(tab) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        if (tab === 'home') {
+            document.getElementById('page-home').classList.add('active');
+        } else if (tab === 'rank') {
+            document.getElementById('page-rank').classList.add('active');
+        } else if (tab === 'profile') {
+            document.getElementById('page-profile').classList.add('active');
+        }
+    }
+
+    function switchRankTab(el) {
+        document.querySelectorAll('.rank-tab').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
     }
 </script>
 </body>
