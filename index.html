@@ -866,14 +866,7 @@
         </div>
     </div>
 
-    <div class="tab-bar">
-        <div class="tab-item active" onclick="switchTab('home')"><span class="tab-icon">🏠</span>首页</div>
-        <div class="tab-item" onclick="switchTab('rank')"><span class="tab-icon">🏆</span>排行</div>
-        <div class="tab-item" onclick="switchTab('profile')"><span class="tab-icon">👤</span>我的</div>
-    </div>
 </div>
-
-<!-- ===== 排行页 ===== -->
 <div class="page rank-page" id="page-rank">
     <div style="padding: 50px 20px 20px;">
         <h2 style="font-size: 22px; margin-bottom: 4px;">🏆 配音排行榜</h2>
@@ -960,12 +953,6 @@
     <div style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 12px;">
         — 每周一 0:00 重置排行 —
     </div>
-
-    <div class="tab-bar">
-        <div class="tab-item" onclick="switchTab('home')"><span class="tab-icon">🏠</span>首页</div>
-        <div class="tab-item active" onclick="switchTab('rank')"><span class="tab-icon">🏆</span>排行</div>
-        <div class="tab-item" onclick="switchTab('profile')"><span class="tab-icon">👤</span>我的</div>
-    </div>
 </div>
 
 <!-- ===== 我的页 ===== -->
@@ -1041,12 +1028,6 @@
             </div>
             <div class="history-score">79分</div>
         </div>
-    </div>
-
-    <div class="tab-bar">
-        <div class="tab-item" onclick="switchTab('home')"><span class="tab-icon">🏠</span>首页</div>
-        <div class="tab-item" onclick="switchTab('rank')"><span class="tab-icon">🏆</span>排行</div>
-        <div class="tab-item active" onclick="switchTab('profile')"><span class="tab-icon">👤</span>我的</div>
     </div>
 </div>
 
@@ -1155,6 +1136,13 @@
     </div>
 </div>
 
+<!-- ===== 全局底部导航 ===== -->
+<div class="tab-bar" id="globalTabBar">
+    <div class="tab-item active" data-tab="home" onclick="switchTab('home')"><span class="tab-icon">🏠</span>首页</div>
+    <div class="tab-item" data-tab="rank" onclick="switchTab('rank')"><span class="tab-icon">🏆</span>排行</div>
+    <div class="tab-item" data-tab="profile" onclick="switchTab('profile')"><span class="tab-icon">👤</span>我的</div>
+</div>
+
 <!-- ===== 分享弹窗 ===== -->
 <div class="share-modal" id="shareModal">
     <div class="share-card">
@@ -1215,6 +1203,7 @@
         document.getElementById('script-content').innerHTML = c.script;
         document.querySelector('.ref-name').textContent = c.ref;
         showPage('page-record');
+        document.getElementById('globalTabBar').style.display = 'none';
         initWaveform();
     }
 
@@ -1226,6 +1215,7 @@
     function goHome() {
         stopRecord();
         showPage('page-home');
+        document.getElementById('globalTabBar').style.display = 'flex';
     }
 
     function initWaveform() {
@@ -1341,6 +1331,9 @@
         } else if (tab === 'profile') {
             document.getElementById('page-profile').classList.add('active');
         }
+        document.querySelectorAll('#globalTabBar .tab-item').forEach(t => {
+            t.classList.toggle('active', t.dataset.tab === tab);
+        });
     }
 
     function switchRankTab(el) {
