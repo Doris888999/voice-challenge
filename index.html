@@ -1339,6 +1339,50 @@
     function switchRankTab(el) {
         document.querySelectorAll('.rank-tab').forEach(t => t.classList.remove('active'));
         el.classList.add('active');
+        const category = el.textContent;
+        const rankData = {
+            '总榜': [
+                {name: '声优见习生', desc: '经典电影台词 · 87分', score: '87分', avatar: '🎧', bg: 'linear-gradient(135deg, #00b894, #00cec9)'},
+                {name: '甜嗓小姐姐', desc: '动漫名场面 · 85分', score: '85分', avatar: '🎵', bg: 'linear-gradient(135deg, #fd79a8, #e17055)'},
+                {name: '播音腔大佬', desc: '新闻播报 · 83分', score: '83分', avatar: '🔥', bg: 'linear-gradient(135deg, #fdcb6e, #e17055)'},
+                {name: '情感朗读者', desc: '情感独白 · 81分', score: '81分', avatar: '✨', bg: 'linear-gradient(135deg, #a29bfe, #6c5ce7)'},
+                {name: '配音小白', desc: '动漫名场面 · 78分', score: '78分', avatar: '🎬', bg: 'linear-gradient(135deg, #55a3e7, #6c5ce7)'},
+            ],
+            '电影': [
+                {name: '台词控', desc: '哪吒「我命由我不由天」', score: '95分', avatar: '🎬', bg: 'linear-gradient(135deg, #e17055, #d63031)'},
+                {name: '声优见习生', desc: '战狼「犯我中华者」', score: '91分', avatar: '🎧', bg: 'linear-gradient(135deg, #00b894, #00cec9)'},
+                {name: '电影迷小周', desc: '大话西游「一万年」', score: '88分', avatar: '🌙', bg: 'linear-gradient(135deg, #fdcb6e, #f39c12)'},
+                {name: '低音炮选手', desc: '无间道「我想做好人」', score: '86分', avatar: '🌟', bg: 'linear-gradient(135deg, #a29bfe, #6c5ce7)'},
+                {name: '播音腔大佬', desc: '让子弹飞「站着挣钱」', score: '84分', avatar: '🔥', bg: 'linear-gradient(135deg, #fdcb6e, #e17055)'},
+            ],
+            '动漫': [
+                {name: '二次元声优', desc: '柯南「真相只有一个」', score: '94分', avatar: '🎌', bg: 'linear-gradient(135deg, #fd79a8, #e84393)'},
+                {name: '甜嗓小姐姐', desc: '千与千寻「不要回头」', score: '90分', avatar: '🎵', bg: 'linear-gradient(135deg, #fd79a8, #e17055)'},
+                {name: '热血少年', desc: '火影「我要成为火影」', score: '87分', avatar: '🔥', bg: 'linear-gradient(135deg, #e17055, #d63031)'},
+                {name: '配音小白', desc: '海贼王「我是要成为海贼王的男人」', score: '83分', avatar: '🎬', bg: 'linear-gradient(135deg, #55a3e7, #6c5ce7)'},
+                {name: '声控小王子', desc: '进击的巨人「献出心脏」', score: '80分', avatar: '😎', bg: 'linear-gradient(135deg, #6c5ce7, #a29bfe)'},
+            ],
+            '情感': [
+                {name: '情感朗读者', desc: '深情告白独白', score: '92分', avatar: '💕', bg: 'linear-gradient(135deg, #fd79a8, #e84393)'},
+                {name: '温柔女声', desc: '雨天的告别', score: '89分', avatar: '🌧️', bg: 'linear-gradient(135deg, #74b9ff, #0984e3)'},
+                {name: '磁性大叔音', desc: '写给未来的信', score: '86分', avatar: '✉️', bg: 'linear-gradient(135deg, #fdcb6e, #f39c12)'},
+                {name: '治愈系少女', desc: '晚安情话', score: '84分', avatar: '🌙', bg: 'linear-gradient(135deg, #a29bfe, #6c5ce7)'},
+                {name: '声控小王子', desc: '毕业季独白', score: '81分', avatar: '😎', bg: 'linear-gradient(135deg, #6c5ce7, #a29bfe)'},
+            ],
+        };
+        const data = rankData[category] || rankData['总榜'];
+        const listEl = document.querySelector('#page-rank .rank-list');
+        listEl.innerHTML = data.map((item, i) => `
+            <div class="rank-item">
+                <div class="rank-num">${i + 4}</div>
+                <div class="rank-avatar" style="background: ${item.bg};">${item.avatar}</div>
+                <div class="rank-info">
+                    <div class="rank-name">${item.name}</div>
+                    <div class="rank-desc">${item.desc}</div>
+                </div>
+                <div class="rank-score">${item.score}</div>
+            </div>
+        `).join('');
     }
 </script>
 </body>
